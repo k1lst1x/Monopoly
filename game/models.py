@@ -21,3 +21,19 @@ class Room(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class Player(models.Model):
+    room = models.ForeignKey(Room, related_name="players", on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=30)
+    order = models.PositiveSmallIntegerField()
+    money = models.IntegerField(default=1500)
+    position = models.PositiveSmallIntegerField(default=0)
+    is_turn = models.BooleanField(default=False)
+    joined_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("room", "order")
+
+    def __str__(self):
+        return f"{self.nickname} ({self.room.code})"
