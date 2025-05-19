@@ -1,0 +1,8 @@
+{% extends "pages/base.html" %}
+{% block title %}Присоединиться{% endblock %}
+{% block content %}
+<h2>Войти в комнату</h2>
+<form method="post">{% csrf_token %}{{ form.as_p }}
+  <button class="btn btn-primary">Войти</button>
+</form>
+{% endblock %}

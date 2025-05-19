@@ -1,0 +1,8 @@
+{% extends "pages/base.html" %}
+{% block title %}Создать комнату{% endblock %}
+{% block content %}
+<h2>Новая комната</h2>
+<form method="post">{% csrf_token %}{{ form.as_p }}
+  <button class="btn btn-success">Создать</button>
+</form>
+{% endblock %}

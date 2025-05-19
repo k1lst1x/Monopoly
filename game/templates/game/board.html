@@ -1,0 +1,19 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block title %}Игровое поле{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/board.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Демо-поле</h2>
+
+<div class="board">
+  {% for cell in cells %}
+     <div class="square"
+          style="grid-row:{{ cell.row }}; grid-column:{{ cell.col }};">
+          {{ cell.i }}
+     </div>
+  {% endfor %}
+</div>
+{% endblock %}

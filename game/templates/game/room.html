@@ -1,0 +1,27 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block title %}Комната {{ room_code }}{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/board.css' %}">
+{% endblock %}
+{% block content %}
+<h2 class="text-center mb-3">Комната {{ room_code }}</h2>
+
+<div id="dice" class="display-1 text-center mb-3">🎲</div>
+<button id="roll" class="btn btn-lg btn-outline-primary d-block mx-auto mb-4">Бросить кубик</button>
+
+<div class="board">
+  {% for cell in cells %}
+     <div class="square"
+          style="grid-row:{{ cell.row }}; grid-column:{{ cell.col }};">
+          {{ cell.i }}
+     </div>
+  {% endfor %}
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+	window.ROOM_CODE = "{{ room_code }}";
+</script>
+<script src="{% static 'js/room.js' %}"></script>
+{% endblock %}
