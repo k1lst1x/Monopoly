@@ -12,10 +12,11 @@
 <ul id="players" class="list-unstyled mb-3"></ul>
 <div class="board">
   {% for cell in cells %}
-     <div class="square"
+    <div id="square-{{ cell.i }}"
+          class="square position-relative"
           style="grid-row:{{ cell.row }}; grid-column:{{ cell.col }};">
           {{ cell.i }}
-     </div>
+    </div>
   {% endfor %}
 </div>
 {% endblock %}

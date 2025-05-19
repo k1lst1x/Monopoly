@@ -6,6 +6,20 @@ from .forms import CreateRoomForm, JoinRoomForm
 from .models import Room
 
 
+def generate_board_cells(size=10):
+    coords = []
+    for col in reversed(range(size + 1)):
+        coords.append((size, col))
+    for row in reversed(range(size)):
+        coords.append((row, 0))
+    for col in range(1, size + 1):
+        coords.append((0, col))
+    for row in range(1, size):
+        coords.append((row, size))
+
+    return [{"i": idx, "row": r + 1, "col": c + 1} for idx, (r, c) in enumerate(coords)]
+
+
 class BoardView(TemplateView):
     template_name = "game/board.html"
 
@@ -63,4 +77,5 @@ class BoardRoomView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx["room_code"] = self.kwargs["code"].upper()
+        ctx["cells"] = generate_board_cells()
         return ctx
